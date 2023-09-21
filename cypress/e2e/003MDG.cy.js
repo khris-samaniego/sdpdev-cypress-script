@@ -106,7 +106,7 @@ describe('MDG Module', () => {
       cy.contains('Sustainability BOM').click()
       cy.get('#mdg-search-bom').should('be.visible')
     })
-    it('TCMC008 User can ', () => {
+    it('TCMC008 User can search Sustainability BOMS from the SBOM tab', () => {
       cy.contains('MDG').click()
       cy.contains('Sustainability BOM').click()
 
