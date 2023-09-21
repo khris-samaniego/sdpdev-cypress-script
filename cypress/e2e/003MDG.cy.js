@@ -106,11 +106,49 @@ describe('MDG Module', () => {
       cy.contains('Sustainability BOM').click()
       cy.get('#mdg-search-bom').should('be.visible')
     })
-    it('TCMC008 User can search Sustainability BOMS from the SBOM tab', () => {
+    it('TCMC008 User can search Sustainability BOMs from the SBOM tab', () => {
       cy.contains('MDG').click()
       cy.contains('Sustainability BOM').click()
-
+      cy.get('#mdg-search-bom')
+      .click()
+      .type('prd')
+      cy.contains('Filtered to').should('be.visible')
     })
+    it('TCMC009 User can select a sustainability BOM from the SBOM tab', () => {
+      cy.contains('MDG').click()
+      cy.contains('Sustainability BOM').click()
+      cy.get('.ag-row-first > [aria-colindex="1"]').click()
+      cy.url().should('include', '/mdg/SustainabilityBOM/')                       //Validate url
+      cy.get('.mantine-d0x3lq').should('be.visible')                              //Validate breadcrumb
+      cy.get('#mdg-bom-back-button > .mantine-Text-root').should('be.visible')    //Validate page name
+      cy.get('#mdg-bom-back-button').should('be.visible')                         //Validate back button
+      cy.get('.mantine-Title-root').should('be.visible')                          //Validate S BOM Product
+      cy.get('.mantine-1avyp1d > .mantine-1fovmxc').should('be.visible')          //Validate materialCode
+      cy.contains('Status').should('be.visible')                                  //Validate SBOM Details
+      cy.contains('Plant').should('be.visible')
+      cy.contains('Material Type').should('be.visible')
+      cy.contains('Material Group').should('be.visible')
+      cy.contains('Product Hierarchy').should('be.visible')
+      cy.contains('Net Weight').should('be.visible')
+      cy.contains('Base Quantity').should('be.visible')
+      cy.contains('Base UOM').should('be.visible')
+      cy.contains('Recyclability %').should('be.visible')
+      cy.contains('# of Components').should('be.visible')
+      cy.get('[placeholder="Search Elements"]').should('be.visible')              //Validate Search bar
+      cy.get('#mdg-add-element-button').should('be.visible')                      //Validate Add Element button
+    })
+    it('TCMC010 User can search elements of a specific S BOM product', () => {
+      cy.contains('MDG').click()
+      cy.contains('Sustainability BOM').click()
+      cy.get('.ag-row-first > [aria-colindex="1"]').click()
+      cy.get('[placeholder="Search Elements"]')
+      .click()
+      .type('1')
+      cy.contains('Filtered to').should('be.visible')
+    })
+
+
+    
 
     
   })
