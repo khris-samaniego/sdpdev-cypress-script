@@ -13,33 +13,21 @@ describe('Login Module', () => {
 
   })
     it('TCL001 User cant login with incorrect credentials', () => {
-      loginPage.enterUsername('sdsd')
+      loginPage.enterUsername('sdsd')                                                                 
       loginPage.enterPassword('dsdsd')
       loginPage.clickLoginButton()
-      cy.get(loginPage.login_msg_error).should('be.visible')
+      cy.get(loginPage.login_msg_error).should('be.visible')                                     //Validate error message is visible
     });
   
     it('TCL002 User cant login with empty fields', () => {
       loginPage.clickLoginButton()
-      cy.get(loginPage.login_msg_error).should('be.visible')
+      cy.get(loginPage.login_msg_error).should('be.visible')                                     //Validate error message is visible
     });
 
     it('TCL003 User can login as a sustainability user', () => {
       loginPage.enterUsername(username)
       loginPage.enterPassword(password)
       loginPage.clickLoginButton()
-      cy.contains('Welcome to the Sustainability Data Platform!').should('be.visible')
+      cy.contains('Welcome to the Sustainability Data Platform!').should('be.visible')           //Validate dashboard content is visible
     });
-    // it('TCL004 User can login as an approver', () => {
-    //   loginPage.enterUsername('KC_Approver')
-    //   loginPage.enterPassword('Test123!')
-    //   loginPage.clickLoginButton()
-    //   //continue capturing homepage elements from home_page
-    // })
-  
-    // it('TCL005 User can login as a supplier', () => {
-    //   loginPage.enterUsername('KimySupplier')
-    //   loginPage.enterPassword('Test123!')
-    //   loginPage.clickLoginButton()
-    // })
 })
