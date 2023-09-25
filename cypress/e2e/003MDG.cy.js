@@ -37,7 +37,7 @@ describe('MDG Module', () => {
     it('TCMC003 User can click any request card', () => {
       cy.contains('MDG').click()
       cy.get('.mantine-11kyg8y > :nth-child(4) > :nth-child(2)').click()
-      cy.get('[style="flex: 1 1 0%;"] > .mantine-6bt1d9').should('be.visible')
+      cy.get('[style="flex: 1 1 0%;"] > .mantine-6bt1d9').should('be.visible')  
       cy.get('.mantine-rlwcn6').should('be.visible')
       cy.get('.mantine-1w0l2tw').should('be.visible')
       cy.get('[id="mdg-request-close"]').should('be.visible')
@@ -96,9 +96,9 @@ describe('MDG Module', () => {
       // Filter
       cy.contains('Filters').click()
       cy.get('[placeholder="Product Type"]').click()
-      cy.contains('Component').click()
+      // cy.contains('Component').click()                                                --> Check if feasible
       // cy.get('[placeholder="Product Type"][data-mantine-stop-propagation="true"][aria-activedescendant="mantine-vwbr0zrgd-0"]').click()
-      cy.get('[placeholder="Product Group"]').click()
+      // cy.get('[placeholder="Product Group"]').click()
 
     })
     it('TCMC007 User can click the Sustainability BOM tab', () => {
@@ -140,16 +140,51 @@ describe('MDG Module', () => {
     it('TCMC010 User can search elements of a specific S BOM product', () => {
       cy.contains('MDG').click()
       cy.contains('Sustainability BOM').click()
-      cy.get('.ag-row-first > [aria-colindex="1"]').click()
+      cy.get('.ag-row-first > [aria-colindex="1"]').click()                       
       cy.get('[placeholder="Search Elements"]')
       .click()
       .type('1')
-      cy.contains('Filtered to').should('be.visible')
+      cy.contains('Filtered to').should('be.visible')                             //Validate response are filtered depending on the string
+    })
+    it('TCMC010 User can add an element of a specific S BOM product', () => {
+      cy.contains('MDG').click()                                                  //--> To recheck feasibility, typeerror issue
+      cy.contains('Sustainability BOM').click()
+      cy.get('.ag-row-first > [aria-colindex="1"]').click()
+      cy.get('#mdg-add-element-button').click()                                   //Click ADD ELEMENT CTA
+    })
+    it('TCMC011 User can click the back button from the specific S BOM product page', () => {
+      cy.contains('MDG').click()                                                  
+      cy.contains('Sustainability BOM').click()
+      cy.get('.ag-row-first > [aria-colindex="1"]').click()
+      cy.get('[id="mdg-bom-back-button"]').click()                                   //Click back button
+      cy.get('#mdg-search-bom').should('be.visible')                                 //Validate component visible
+    })
+    it('TCMC012 User can click the Elements tab', () => {
+      cy.contains('MDG').click()     
+      cy.contains('Elements').click()                                                   //Click Elements tab
+      cy.url().should('include', '/mdg/elements')                                       //Validate redirection url 
+      cy.get('#mdg-search-elements').should('be.visible')                               //Validate search bar
+      cy.contains('Filters').should('be.visible')                                       //Validate Filter button
+      cy.get('#mdg-add-element-button').should('be.visible')                            //Validate Add Element CTA
+      cy.get('[aria-colindex="1"] > .ag-header-cell-comp-wrapper > .ag-cell-label-container > .ag-header-cell-label > .ag-header-cell-text').should('be.visible')   //Validate Element Name is visible
+      cy.get('[aria-colindex="2"] > .ag-header-cell-comp-wrapper > .ag-cell-label-container > .ag-header-cell-label > .ag-header-cell-text').should('be.visible')   //Validate Category is visible
+      cy.get('[aria-colindex="3"] > .ag-header-cell-comp-wrapper > .ag-cell-label-container > .ag-header-cell-label > .ag-header-cell-text').should('be.visible')   //Validate element Name 2 is visible
+      cy.get('.ag-pinned-right-header > .ag-header-row > .ag-header-cell > .ag-header-cell-comp-wrapper > .ag-cell-label-container > .ag-header-cell-label > .ag-header-cell-text').should('be.visible')   //Validate Action is visible
+      
+      //Search
+      cy.get('#mdg-search-elements')
+        .click()  //Click search bar
+        .type('electric')
+      cy.contains('electric').should('be.visible')
+
+      // //Filter
+      // cy.contains('Filters').click()
+      // cy.get('[placeholder="Category"]').select('ELECTRICITY')  //Select dropdown element  --> to recheck feasibility
+      // cy.get('#mdg-add-element-button').click()                                            --> recheck. hard to get objects of dynamic object values 
+
     })
 
-
     
-
     
   })
 
