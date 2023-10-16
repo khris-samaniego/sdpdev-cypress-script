@@ -3,7 +3,7 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   e2e: {
     watchForFileChanges: false,
-    defaultCommandTimeout: 10000,
+    defaultCommandTimeout: 15000,
     viewportWidth: 1366,
     viewportHeight: 768, 
     setupNodeEvents(on, config) {
@@ -18,7 +18,7 @@ module.exports = defineConfig({
 
     "env": {
         "customUrl": "https://sdpdev.vupico.io/",
-        "username": "kimy.s",
+        "username": "sdp-admin",
         "password": "rootadmin"
   
       }

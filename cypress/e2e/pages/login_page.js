@@ -15,7 +15,3 @@ export class LoginPage {
         cy.get(this.login_btn_submit).click()
     }
 }
-
-// cy.get('#login-username')
-// cy.get('#login-password')
-// cy.get('#login-submit')

@@ -24,39 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-// Cypress.Commands.add('login', () => {
-//     cy.request({
-//         method: 'POST',
-//         url: 'https://sdpdev.vupico.io/IAMService/auth/login',
-//         body: {
-//             username: 'kimy.s',
-//             password: 'rootadmin',
-//         }
-//     })
-//     .then((Response) => {
-//         window.localStorage.setItem('jwt', Response.body.token)
-//     })
-// })
-
-// Cypress.Commands.add('loginBackend', (username, password => {
-//     cy.request({
-//       method: 'POST',
-//       url: 'https://sdpdev.vupico.io/IAMService/auth/login',
-//       body: {
-//         username: username,
-//         password: password,
-//       },
-//     }).then((response) => {
-//       // Assuming your backend returns a token upon successful login
-//       if (response.status === 200 && response.body.token) {
-//         // Store the token in Cypress environment for future use (optional)
-//         Cypress.env('authToken', response.body.token);
-//       } else {
-//         throw new Error('Login failed');
-//       }
-//     });
-//   }))
-
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test
