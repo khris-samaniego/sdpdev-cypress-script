@@ -17,25 +17,25 @@ describe('LCA Module', () => {
       loginPage.enterPassword(password),
       loginPage.clickLoginButton()
   })
-    // it('TCLC001 User can click LCA from the left panel', () => {
-    //   cy.contains('LCA').click()                                                                 
-    //   cy.contains('Dashboard').should('be.visible')                       //Validate LCA page contents
-    //   cy.contains('Projects').should('be.visible')                        //Validate LCA page contents
-    //   cy.contains('Value Chain').should('be.visible')                     //Validate LCA page contents
-    // })
-    // it('TCLC002 User can see the dashboard contents', () => {
-    //   cy.contains('LCA').click()
-    //   cy.contains('Existing Products').should('be.visible')                  //Validate LCA summary contents
-    //   cy.contains('KgCO2-Eq').should('be.visible')                           //Validate LCA summary contents
-    //   cy.contains('Simulated Products').should('be.visible')                 //Validate LCA summary contents
-    //   cy.contains('Taxable Products').should('be.visible')                   //Validate LCA summary contents
+    it('TCLC001 User can click LCA from the left panel', () => {
+      cy.contains('LCA').click()                                                                 
+      cy.contains('Dashboard').should('be.visible')                       //Validate LCA page contents
+      cy.contains('Projects').should('be.visible')                        //Validate LCA page contents
+      cy.contains('Value Chain').should('be.visible')                     //Validate LCA page contents
+    })
+    it('TCLC002 User can see the dashboard contents', () => {
+      cy.contains('LCA').click()
+      cy.contains('Existing Products').should('be.visible')                  //Validate LCA summary contents
+      cy.contains('KgCO2-Eq').should('be.visible')                           //Validate LCA summary contents
+      cy.contains('Simulated Products').should('be.visible')                 //Validate LCA summary contents
+      cy.contains('Taxable Products').should('be.visible')                   //Validate LCA summary contents
 
-    //   cy.contains('Top 5 Products by Environment Impact').should('be.visible')
-    //   cy.contains('Active Projects').should('be.visible')                    //Validate LCA page contents
-    //   cy.contains('+ Create New Project').should('be.visible')               //Validate LCA page contents
-    //   cy.contains('Impacts by Life Stage').should('be.visible')              //Validate LCA page contents
-    //   cy.contains('View Impact').should('be.visible')                        //Validate LCA page contents
-    // })
+      cy.contains('Top 5 Products by Environment Impact').should('be.visible')
+      cy.contains('Active Projects').should('be.visible')                    //Validate LCA page contents
+      cy.contains('+ Create New Project').should('be.visible')               //Validate LCA page contents
+      cy.contains('Impacts by Life Stage').should('be.visible')              //Validate LCA page contents
+      cy.contains('View Impact').should('be.visible')                        //Validate LCA page contents
+    })
     it('TCLC003 User can see navigate thru the dashboard', () => {
       
       //Top 5 Products by Environmental Impact
