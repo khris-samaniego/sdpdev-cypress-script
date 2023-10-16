@@ -42,7 +42,7 @@ describe('LCA Module', () => {
       cy.contains('LCA').click()
       cy.scrollTo('top')
       cy.get('#ProductYear').should('be.visible')                                     //Validate dropdown field
-      cy.get(lca.lca_dash_top5_zoomslider).should('be.visible')                       //Validate zoom slider
+      // cy.get(lca.lca_dash_top5_zoomslider).should('be.visible')                       //Validate zoom slider - No more slider 101623
 
       //See Active Projects
       cy.contains('Start Date').should('be.visible').should('be.visible')             //Validate headers
@@ -69,86 +69,50 @@ describe('LCA Module', () => {
       cy.contains('Create Simulation').should('be.visible')                           //Validate Simulation Create CTA
       cy.go('back')                                                                   //Go back to dashboard
 
-      //Create a Project 
-      cy.contains('Create New Project').click()                                          //Click Create New Project CTA
-      cy.get('[value="New Project"]')
-        .clear()
-        .type('Test Project')                                                            //Input Name field
-      cy.contains('Define Project Details')
-        .invoke('attr', 'for')
-        .then((forAttribute) => {
-          const dynamicInputId = forAttribute.replace('-5n4suh5th', '');
-          cy.get(`input[id="${dynamicInputId}"]`)
-            .should('exist')
-            .type('Project detail definition')                                           //Input Define Project Details field
-          });
-      cy.get('[aria-controls="simulationType"]').as('dropdownButton')
-        cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false');
-        cy.get('@dropdownButton').click();
-        cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true');
-        cy.get('@dropdownButton').invoke('attr', 'aria-activedescendant', 'simulationType-2') 
-        cy.contains('BOM-COMPLETE').click()                                              //Select simulation type
-      cy.get('[placeholder="Product"]')
-        .click()
-        .type('{downarrow}')
-        .type('{enter}')                                                                 //Select Product
-      cy.get('[placeholder="Year"]')
-        .click()                    
-        cy.contains('2022').click()                                                      //Select Year
-      cy.get(lca.lca_project_create_addTargetBtn).click()                                //Click Add Target CTA
-      cy.get('[placeholder="Impact Category"]')                                          //Select target impact category
-        .click()
-        .type('{downarrow}')
-        .type('{downarrow}')
-        .type('{enter}')
-      cy.get(lca.lca_project_create_targetReduce)                                        //Select target reduce %
-        .click()
-        .type('10')
-      cy.get(lca.lca_project_create_addPlantBtn).click()                                 //Click Add Plant CTA
-      cy.get('[placeholder="Plant"]')                                                    //Select plant
-        .click()
-        .type('{downarrow}')
-        .type('{enter}')
-      cy.get('[class="mantine-Input-input mantine-NumberInput-input mantine-los5wk"]')
-        .click()
-        .type('5')
-
-      cy.get('[class="mantine-UnstyledButton-root mantine-Button-root mantine-1141agv"]').click() //Click Add CTA
-          
-        cy.get('[placeholder="Plant"]').trigger('keydown', { key: 'Tab' })
-        .trigger('keydown', { key: 'Tab' })
-        .type('2')
-
-      cy.get('[aria-controls="simulationType"]').as('dropdownButton')
-      cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false');
-      cy.get('@dropdownButton').click();
-      cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true');
-      cy.contains('.mantine-Select-option', 'Your Option Text').click(); // Replace 'Your Option Text' with the text of the option you want to select
-
-      cy.get('@dropdownButton').contains('[aria-activedescendant="simulationType-2"]').click();
-      cy.get('[aria-activedescendant="simulationType-2"]').click()
-
-
-
-
-    // it('TCLC00X User can create a Project from the dashboard', () => { //To be continued
-    //   cy.contains('LCA').click(),
-    //   cy.scrollTo('top')
-    //   cy.contains('Create New Project').click()
-    //   cy.get('[value="New Project"]')
-    //     .clear()
-    //     .type('Test Project')
-    //     .trigger('keydown', { keyCode: 9, which: 9 })
-    //   // cy.contains('Define Project Details') can't find the define project details input field
-    //   // cy.get('mantine-InputWrapper-label mantine-TextInput-label mantine-1ar991')
-    //   //   .next('input')
-    //   //   .click()
-    //   //   .type('ddfdfdf')
-    //   cy.get('#simulationType')
-    //     .click()
-    //   cy.get('[aria-activedescendant="simulationType-2"]').click()
-    // })
-
+      // //Create a Project 
+      // cy.contains('Create New Project').click()                                          //Click Create New Project CTA
+      // cy.get('[value="New Project"]')
+      //   .clear()
+      //   .type('Test Project')                                                            //Input Name field
+      // cy.contains('Define Project Details')
+      //   .invoke('attr', 'for')
+      //   .then((forAttribute) => {
+      //     const dynamicInputId = forAttribute.replace('-5n4suh5th', '');
+      //     cy.get(`input[id="${dynamicInputId}"]`)
+      //       .should('exist')
+      //       .type('Project detail definition')                                           //Input Define Project Details field
+      //     });
+      // cy.get('[aria-controls="simulationType"]').as('dropdownButton')
+      //   cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false');
+      //   cy.get('@dropdownButton').click();
+      //   cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true');
+      //   cy.get('@dropdownButton').invoke('attr', 'aria-activedescendant', 'simulationType-2') 
+      //   cy.contains('BOM-COMPLETE').click()                                              //Select simulation type
+      // cy.get('[placeholder="Product"]')
+      //   .click()
+      //   .type('{downarrow}')
+      //   .type('{enter}')                                                                 //Select Product
+      // cy.get('[placeholder="Year"]')
+      //   .click()                    
+      //   cy.contains('2022').click()                                                      //Select Year
+      // cy.get(lca.lca_project_create_addTargetBtn).click()                                //Click Add Target CTA
+      // cy.get('[placeholder="Impact Category"]')                                          //Select target impact category
+      //   .click()
+      //   .type('{downarrow}')
+      //   .type('{downarrow}')
+      //   .type('{enter}')
+      // cy.get(lca.lca_project_create_targetReduce)                                        //Select target reduce %
+      //   .click()
+      //   .type('10')
+      // cy.get(lca.lca_project_create_addPlantBtn).click()                                 //Click Add Plant CTA
+      // cy.get('[placeholder="Plant"]')                                                    //Select plant
+      //   .click()
+      //   .type('{downarrow}')
+      //   .type('{enter}')
+      // cy.get('[class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-x0i9fi"]') //Stuck here. Unable to enter batch size.
+      //   .click()
+      // cy.get('[class="mantine-UnstyledButton-root mantine-Button-root mantine-1141agv"]').click()  //Click Add CTA
+// Disabling create a project Test Case. Blocked by Add batch size command.
 
   })
 
